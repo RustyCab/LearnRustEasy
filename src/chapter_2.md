@@ -152,7 +152,7 @@ cargo new hello_world
 ### 2.3.2 编写程序
 默认情况下，main.rs文件中已经包含了一个简单的Hello, World程序，代码如下：
 
-```
+```Rust
 fn main() {
     println!("Hello, world!");
 }
