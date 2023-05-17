@@ -120,7 +120,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 2. 对于Windows用户
 
-- 访问https://rustup.rs/，点击"Get started"。
+- 访问https://rustup.rs/ ，点击"Get started"。
 - 下载rustup-init.exe安装程序。
 - 双击rustup-init.exe运行安装程序，按照提示操作。
 - 在安装过程中，选择默认选项（按回车键）即可。
@@ -143,9 +143,10 @@ Rust使用Cargo作为官方的构建工具和包管理器，下面通过Cargo创
 ```
 cargo new hello_world
 ```
-
 创建后，可以看到整个目录的结构如下：
+
 ![目录结构](../assets/62.png)
+
 其中Cargo.toml是项目的配置文件，src为源代码目录，main.rs为主程序文件。
 
 ### 2.3.2 编写程序
