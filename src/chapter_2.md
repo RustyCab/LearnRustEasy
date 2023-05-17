@@ -145,7 +145,7 @@ cargo new hello_world
 ```
 
 创建后，可以看到整个目录的结构如下：
-![目录结构](../assets/62.PNG)
+![目录结构](../assets/62.png)
 其中Cargo.toml是项目的配置文件，src为源代码目录，main.rs为主程序文件。
 
 ### 2.3.2 编写程序
