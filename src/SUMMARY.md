@@ -13,6 +13,7 @@
         - [所有权介绍](./chapter_3/chapter_3_7_1.md)
         - [引用与借用](./chapter_3/chapter_3_7_2.md)
         - [Slice类型](./chapter_3/chapter_3_7_3.md)
+    - [3.20 Rust并发编程](./chapter_3/chapter_3_20.md)
     - [3.21 unsafe编程](./chapter_3/chapter_3_21.md)
 - [Rust使用技巧]()
     - [Rust代码风格与格式化](./chapter_4/chapter_4_1.md)
