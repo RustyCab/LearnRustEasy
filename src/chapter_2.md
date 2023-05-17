@@ -149,7 +149,7 @@ cargo new hello_world
 
 创建后，可以看到整个目录的结构如下：
 
-![目录结构](./assets/62.png)
+![目录结构](../assets/62.png)
 
 其中Cargo.toml是项目的配置文件，src为源代码目录，main.rs为主程序文件。
 
@@ -172,7 +172,7 @@ cargo run
 ```
 运行结果如下：
 
-![运行结果](./assets/63.png)
+![运行结果](../assets/63.png)
 
 ### 2.3.4 理解Rust源码的基本结构
 下面简单介绍Rust源码的结构。
