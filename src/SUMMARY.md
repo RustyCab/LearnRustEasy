@@ -15,3 +15,4 @@
         - [Slice类型](./chapter_3/chapter_3_7_3.md)
 - [Rust使用技巧]()
     - [Rust代码风格与格式化](./chapter_4/chapter_4_1.md)
+    - [使用 Clippy 进行代码静态检查](./chapter_4/chapter_4_2.md)
