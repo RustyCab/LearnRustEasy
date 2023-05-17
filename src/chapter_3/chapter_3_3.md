@@ -1,7 +1,7 @@
 ## 3.3 函数(Function) 
 ### 3.3.1. 函数定义
 fn关键字、函数名、函数参数名及其类型（如果有的话）、返回值类型（如果有的话）组成函数签名， 加上由一对花括号包含的函数体组成函数。例子如下：
-```
+```Rust
 // 一个没有参数，也没有返回值的函数
 fn print_line() {
     println!("++++++++++++++++");
@@ -28,7 +28,7 @@ fn main() {
 ```
 
 Rust中，函数也可以定义在函数内部，如下：
-```
+```Rust
 fn calculate(a: u32, b: u32) {
     println!("a is {:?}", a);
     println!("b is {:?}", b);
@@ -52,7 +52,7 @@ fn main() {
 ### 3.3.2. 语句和表达式
 
 Rust中，语句是执行一个写操作但不返回值的指令，表达式则计算并产生一个值。
-```
+```Rust
 fn main() {
     let a = 1u32; // "1u32"就是一个表达式， “let a = 1u32;”则是一个语句
     let b = a + 1;// “a + 1”就是一个表达式，“let b = a + 1;”则是一个语句
@@ -68,7 +68,7 @@ fn main() {
 ### 3.3.3. 函数返回值
 
 - 使用return指定返回值，如下：
-```
+```Rust
 fn sum(a: u32, b: u32) -> u32 {
     let r = a + b;
     return r     //可以加分号，也可以不加分号, 所以这行等价于“return r;”
@@ -83,7 +83,7 @@ fn main() {
 ```
 
 特别的return关键字不指定值时，表示返回的是()，如下：
-```
+```Rust
 fn my_function() -> () {
     println!("some thing");
     return; //等价于 “return ()”
@@ -91,7 +91,7 @@ fn my_function() -> () {
 ```
 
 - 不使用return关键字，将返回最后一条执行的表达式的计算结果，如下：
-```
+```Rust
 fn sum(a: u32, b: u32) -> u32 {
     println!("a is {:?}", a);
     println!("b is {:?}", b);
