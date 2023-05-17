@@ -60,7 +60,7 @@ fn main() {
 
 #### 3. String类型
 
-- String类型的创建
+- String类型的创建有下面三种方式：
 
   - String::from
   - to_string
