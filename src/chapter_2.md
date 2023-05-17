@@ -142,7 +142,7 @@ Rust使用Cargo作为官方的构建工具和包管理器，下面通过Cargo创
 ```cargo new hello_world```
 
 创建后，可以看到整个目录的结构如下：
-[图片]
+![目录结构](assets/62.PNG)
 其中Cargo.toml是项目的配置文件，src为源代码目录，main.rs为主程序文件。
 
 ### 2.3.2 编写程序
@@ -163,7 +163,7 @@ cd hello_world
 cargo run
 ```
 运行结果如下：
-[图片]
+![目录结构](assets/63.PNG)
 
 ### 2.3.4 理解Rust源码的基本结构
 下面简单介绍Rust源码的结构。
