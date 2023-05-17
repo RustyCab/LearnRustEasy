@@ -45,3 +45,22 @@ fn main() {
 &str和&String的内存布局如下：
 
 ![注释](../../assets/13.png)
+
+#### 3. 其它Slice
+数组的Slice，如下：
+```Rust
+fn main() {
+    let a: [u32; 5] = [1, 2, 3, 4, 5];
+    let b = &a[1..3];
+    println!("b: {:?}", b);
+}
+```
+Vec的Slice，如下：
+```Rust
+fn main() {
+    let v: Vec<u32> = vec![1, 2, 3, 4, 5];
+    let b = &v[1..3];
+    println!("b: {:?}", b);
+}
+```
+
