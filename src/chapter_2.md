@@ -130,16 +130,18 @@ Rust在系统工具和实用程序开发中也表现出色。Rust编写的工具
 ### 2.2.2 验证安装
 
 安装完成后，可以输入如下命令验证安装：
-
-```rustc --version```
+```
+rustc --version
+```
 
 ## 2.3 第一个Rust程序
 本节将编写和运行本书的第一个Rust程序：Hello, World!
 
 ### 2.3.1 创建一个新的Rust项目
 Rust使用Cargo作为官方的构建工具和包管理器，下面通过Cargo创建一个新的Rust项目：
-
-```cargo new hello_world```
+```
+cargo new hello_world
+```
 
 创建后，可以看到整个目录的结构如下：
 ![目录结构](assets/62.PNG)
@@ -163,7 +165,8 @@ cd hello_world
 cargo run
 ```
 运行结果如下：
-![目录结构](assets/63.PNG)
+
+![运行结果](assets/63.png)
 
 ### 2.3.4 理解Rust源码的基本结构
 下面简单介绍Rust源码的结构。
