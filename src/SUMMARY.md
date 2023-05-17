@@ -13,6 +13,7 @@
         - [所有权介绍](./chapter_3/chapter_3_7_1.md)
         - [引用与借用](./chapter_3/chapter_3_7_2.md)
         - [Slice类型](./chapter_3/chapter_3_7_3.md)
+    - [3.14 迭代器](./chapter_3/chapter_3_14.md)
     - [3.15 常见Collections](./chapter_3/chapter_3_15.md)
         - [3.15.1 Vector](./chapter_3/chapter_3_15_1.md)
         - [3.15.2 String](./chapter_3/chapter_3_15_2.md)
