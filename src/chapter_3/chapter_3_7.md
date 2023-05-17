@@ -171,5 +171,97 @@ fn main() {
 ```
 s是String类型，字符串“Hello world！”是存储在堆内存上的，其内存布局如下：
 ![注释](../../assets/6.png)
+
 当执行let s1 = s后，内存布局如下：
+
 ![注释](../../assets/7.png)
+
+当let s1 = s执行后，就发生了所有权的转移，String类型值的所有权从s转移到了s1。此时Rust认为原来的s不再有效。因此，上面代码第4行打开编译将会出错。
+
+#### 5. 浅拷贝与深拷贝
+- 浅拷贝
+
+只拷贝栈上的内容，就叫做浅拷贝。
+对于上面的String类型，执行let s1 = s后，只把s的ptr、len、cap中的值拷贝给s1的ptr、len、cap的值，这种就叫做浅拷贝。浅拷贝发生后，s的ptr和s1的ptr都指向同样的堆内存。内存布局如下：
+
+![注释](../../assets/8.png)
+
+- 深拷贝
+除了拷贝栈上的内容外，还拷贝堆内存中的内容，就叫做深拷贝。
+对于上面的String类型，执行let s1 = s后，除了把s的len、cap中的值拷贝给s1的len、cap外，还在堆上重新分配一块内存，将s的ptr指向的堆内存的内容拷贝到这块内存，然后s1的ptr指向这块内存，这种拷贝就叫做深拷贝。深拷贝发生后，s的ptr和s1的ptr指向不同的堆内存，但是堆内存中存储的内容一样。深拷贝发生后的内存布局如下：
+
+![注释](../../assets/9.png)
+
+显然，**Rust中变量赋值（Rust中叫所有权转移）使用的是浅拷贝。**
+
+#### 6. Clone
+当需要拷贝堆上的数据时，可以使用clone方法，完成深拷贝的操作，如下：
+```Rust
+fn main() {
+    let s = "Hello world!".to_string();
+    let s1 = s.clone(); // 这将发生深拷贝
+    println!("s: {:?}", s);
+    println!("s1: {:?}", s1);
+}
+```
+不过不是所有的类型都能使用clone方法进行深拷贝，只有实现了Clone trait的类型才能调用该方法。
+
+#### 7. Copy
+按照Rust所有权规则第二条，在任意时刻，值有且仅有一个所有者。所以当let a = b发生时，就将变量b拥有的值移到了a上，此时a应该回到未初始状态，但实际情况并不一定。不一定的原因是，部分类型实现了Copy trait，在值移动时会对值进行自动拷贝，能让变量a仍拥有原来的值。
+
+Rust中，默认实现了Copy trait的类型有：
+
+- 所有整数类型，比如u32；
+- 所有浮点数类型，比如f64；
+- 布尔类型，bool，它的值是true和false；
+- 字符类型，char；
+- 元组，当且仅当其包含的类型也都是Copy的时候。比如(i32, i32)是Copy的，但(i32, String)不是；
+- 共享指针类型或共享引用类型。
+
+#### 8. 所有权和函数
+- 将值传给函数
+
+在将值传递给函数时，和变量赋值一样会发生值的移动（或复制），如下：
+```Rust
+fn main() {
+    let s = String::from("hello");
+    takes_ownership(s);           
+    // println!("s: {:?}", s);//打开编译会报错，因为s的所有权在上一行已经转移到take_ownership函数中了
+
+    let x = 5;         
+    makes_copy(x);     
+    println!("x: {:?}", x);//不会报错，因为上一行将x传到makes_copy函数时会自动拷贝x的值到函数中
+}
+
+fn takes_ownership(some_string: String) {
+    println!("{}", some_string);
+}
+
+fn makes_copy(some_integer: i32) { 
+    println!("{}", some_integer);
+}
+```
+
+- 返回值和作用域
+
+函数的返回值也可以转移所有权，如下：
+```Rust
+fn main() {
+    let s1 = gives_ownership();         // gives_ownership 将返回值转移给 s1
+    let s2 = String::from("hello");     // s2 进入作用域
+    let s3 = takes_and_gives_back(s2);  // s2 被移动到takes_and_gives_back 中，
+                                        // 它也将返回值移给 s3
+} //这里，s3移出作用域并被丢弃。s2也移出作用域，但已被移走，所以什么也不会发生。s1离开作用域并被丢弃
+
+fn gives_ownership() -> String {// gives_ownership 会将返回值移动给调用它的函数
+    let some_string = String::from("yours"); // some_string 进入作用域。
+    some_string                              // 返回 some_string 并移出给调用的函数
+}
+
+// takes_and_gives_back 将传入字符串并返回该值
+fn takes_and_gives_back(a_string: String) -> String { // a_string 进入作用域
+    a_string  // 返回 a_string 并移出给调用的函数
+}
+```
+
+关于所有权的总结：将值赋给另一个变量时移动它。当持有堆中数据值的变量离开作用域时，其值将通过 drop函数（后续讲解） 被清理掉，除非数据被移动为另一个变量所有。
