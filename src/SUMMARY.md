@@ -1,3 +1,16 @@
 # Summary
 
 - [1 前言：为什么写这本书](./chapter_1.md)
+- [2 欢迎来到Rust的世界](./chapter_2.md)
+- [3 Rust基础]()
+    - [3.1 变量和可变性](./chapter_3/chapter_3_1.md)
+    - [3.2 基本数据类型](./chapter_3/chapter_3_2.md)
+    - [3.3 函数](./chapter_3/chapter_3_3.md)
+    - [3.4 注释](./chapter_3/chapter_3_4.md)
+    - [3.5 控制流](./chapter_3/chapter_3_5.md)
+    - [3.6 Rust内存模型](./chapter_3/chapter_3_6.md)
+    - [3.7 所有权](./chapter_3/chapter_3_7.md)
+        - [3.7.1 所有权介绍](./chapter_3/chapter_3_7_1.md)
+        - [3.7.2 引用与借用](./chapter_3/chapter_3_7_2.md)
+        - [3.7.3 Slice类型](./chapter_3/chapter_3_7_3.md)
+- [4 Rust使用技巧]()

@@ -18,7 +18,7 @@ fn main(){
   let arr_slice1 = &arr[..=1];
   println!("{:?}", arr_slice1); // [11,22];
 
-  let arr_slice2 = &mut arr[..=1];  
+  let arr_slice2 = &mut arr[..=1];
   arr_slice2[0] = 1111;
   println!("{:?}", arr_slice2);// [1111,22];
   println!("{:?}", arr);// [1111,22,33,44];
@@ -44,7 +44,7 @@ fn main() {
 
 &str和&String的内存布局如下：
 
-![注释](../../assets/13.png)
+![注释](../assets/13.png)
 
 #### 3. 其它Slice
 数组的Slice，如下：
@@ -63,4 +63,3 @@ fn main() {
     println!("b: {:?}", b);
 }
 ```
-

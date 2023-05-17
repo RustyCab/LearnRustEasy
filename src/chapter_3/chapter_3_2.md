@@ -1,4 +1,4 @@
-## 3.2 基本数据类型(Basic Data Type)
+## 3.2 基本数据类型
 
 Rust是静态类型语言，编译时就必须知道所有变量的类型。根据值以及其使用方式，Rust编译器通常能自动推导出变量的类型。
 Rust有两种数据类型子集，分别是：标量（scalar）类型和复合（compound）类型。
@@ -76,7 +76,7 @@ Rust中的布尔型用bool表示，有两个可能的值，为true和false。布
 fn main() {
     // 定义方式
     let a: bool = true;
-    let b: bool = false; 
+    let b: bool = false;
 
     // 使用场景
     if a {

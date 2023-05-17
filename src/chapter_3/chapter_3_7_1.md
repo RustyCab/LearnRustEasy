@@ -26,12 +26,12 @@ fn main() {
 ```Rust
 fn f() {
     let b = 1u32;           // --------------------------------|
-    let c = 2u32;           //-----------|                     |             
+    let c = 2u32;           //-----------|                     |
                             //           |                     |
                             //           |                     |---b的作用域范围
     println!("b = {:?}", b);//           |--c的作用与范围       |
     println!("c = {:?}", c);//           |                     |
-                            //-----------|  -------------------|         
+                            //-----------|  -------------------|
 }
 
 fn main() {
@@ -95,7 +95,7 @@ pub struct String {
 Vec类型的定义如下：
 ```Rust
 pub struct Vec<T> {
-    buf: RawVec<T>,  
+    buf: RawVec<T>,
     len: usize,      // 长度
 }
 ```
@@ -118,7 +118,7 @@ struct String {
 更进一步的简化，可以得到String类型本质如下：
 ```Rust
 struct String {
-    ptr：NonNull<u8>, 
+    ptr：NonNull<u8>,
     cap: usize，
     len: usize,
 }
@@ -139,7 +139,7 @@ fn main() {
 ```
 在第2行定义String类型时，并不能确定最终字符串的大小，所以字符串内容本身应该存储在堆上。结合什么String类型的本质的内容，可以得到String类型的存储如下：
 
-![注释](../../assets/5.png)
+![注释](../assets/5.png)
 
 String类型本身是三个字段（指针、长度、容量），在编译时是已知的大小，存储在栈上；String类型绑定的字符串（在上面代码中是“AB”）在编译时大小未知，是运行时在堆上分配内存，分配后的内存地址保存在String类型的指针字段中，内存大小保存在cap字段中，内存上存储的字符串长度保存在len字段中。
 
@@ -171,11 +171,11 @@ fn main() {
 ```
 s是String类型，字符串“Hello world！”是存储在堆内存上的，其内存布局如下：
 
-![注释](../../assets/6.png)
+![注释](../assets/6.png)
 
 当执行let s1 = s后，内存布局如下：
 
-![注释](../../assets/7.png)
+![注释](../assets/7.png)
 
 当let s1 = s执行后，就发生了所有权的转移，String类型值的所有权从s转移到了s1。此时Rust认为原来的s不再有效。因此，上面代码第4行打开编译将会出错。
 
@@ -185,14 +185,14 @@ s是String类型，字符串“Hello world！”是存储在堆内存上的，�
 只拷贝栈上的内容，就叫做浅拷贝。
 对于上面的String类型，执行let s1 = s后，只把s的ptr、len、cap中的值拷贝给s1的ptr、len、cap的值，这种就叫做浅拷贝。浅拷贝发生后，s的ptr和s1的ptr都指向同样的堆内存。内存布局如下：
 
-![注释](../../assets/8.png)
+![注释](../assets/8.png)
 
 - 深拷贝
 
 除了拷贝栈上的内容外，还拷贝堆内存中的内容，就叫做深拷贝。
 对于上面的String类型，执行let s1 = s后，除了把s的len、cap中的值拷贝给s1的len、cap外，还在堆上重新分配一块内存，将s的ptr指向的堆内存的内容拷贝到这块内存，然后s1的ptr指向这块内存，这种拷贝就叫做深拷贝。深拷贝发生后，s的ptr和s1的ptr指向不同的堆内存，但是堆内存中存储的内容一样。深拷贝发生后的内存布局如下：
 
-![注释](../../assets/9.png)
+![注释](../assets/9.png)
 
 显然，**Rust中变量赋值（Rust中叫所有权转移）使用的是浅拷贝**。
 
@@ -227,11 +227,11 @@ Rust中，默认实现了Copy trait的类型有：
 ```Rust
 fn main() {
     let s = String::from("hello");
-    takes_ownership(s);           
+    takes_ownership(s);
     // println!("s: {:?}", s);//打开编译会报错，因为s的所有权在上一行已经转移到take_ownership函数中了
 
-    let x = 5;         
-    makes_copy(x);     
+    let x = 5;
+    makes_copy(x);
     println!("x: {:?}", x);//不会报错，因为上一行将x传到makes_copy函数时会自动拷贝x的值到函数中
 }
 
@@ -239,7 +239,7 @@ fn takes_ownership(some_string: String) {
     println!("{}", some_string);
 }
 
-fn makes_copy(some_integer: i32) { 
+fn makes_copy(some_integer: i32) {
     println!("{}", some_integer);
 }
 ```

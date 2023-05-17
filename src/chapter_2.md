@@ -1,5 +1,5 @@
 # 2 欢迎来到Rust的世界
-## 2.1 为什么选择Rust  
+## 2.1 为什么选择Rust
 ### 2.1.1 Rust的历史与背景
 Rust是一种现代的系统编程语言，它注重性能、安全性和并发。Rust最初由Mozilla研究院的Graydon Hoare于2006年开始设计，最早的目标是为了解决C++在系统编程领域的一些痛点。在2010年，Mozilla正式开始支持这个项目，从那时起，Rust开始迅速发展并逐渐成为一个强大的编程语言。
 
@@ -17,7 +17,7 @@ Rust的设计理念是将系统编程的性能与安全性相结合。它的核�
 - 2015年：Rust 1.0正式发布，稳定版本的Rust开始对外提供支持。
 - 2016年：Rust开始获得广泛关注，社区逐渐壮大。
 - 2018年：WebAssembly的推广使得Rust成为一个受欢迎的前端编程语言。
- 
+
 3. 社区与生态系统
 
 随着Rust的发展，其社区和生态系统也在不断壮大。Rust编程语言被广泛应用于各种领域，如网络编程、游戏开发、操作系统、嵌入式系统、区块链等。此外，Rust已经连续多年被Stack Overflow开发者调查评为最受欢迎的编程语言。
@@ -114,7 +114,8 @@ Rust在系统工具和实用程序开发中也表现出色。Rust编写的工具
 1. 对于macOS和Linux用户
 
 通过如下命令进行安装：
-```
+
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
@@ -131,7 +132,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ### 2.2.2 验证安装
 
 安装完成后，可以输入如下命令验证安装：
-```
+
+```bash
 rustc --version
 ```
 
@@ -140,12 +142,14 @@ rustc --version
 
 ### 2.3.1 创建一个新的Rust项目
 Rust使用Cargo作为官方的构建工具和包管理器，下面通过Cargo创建一个新的Rust项目：
-```
+
+```bash
 cargo new hello_world
 ```
+
 创建后，可以看到整个目录的结构如下：
 
-![目录结构](../assets/62.png)
+![目录结构](./assets/62.png)
 
 其中Cargo.toml是项目的配置文件，src为源代码目录，main.rs为主程序文件。
 
@@ -162,13 +166,13 @@ fn main() {
 ### 2.3.3 编译并运行Hello, World程序
 运行程序需要进去到项目目录中，然后运行cargo run命令即可，步骤如下：
 
-```
+```bash
 cd hello_world
 cargo run
 ```
 运行结果如下：
 
-![运行结果](../assets/63.png)
+![运行结果](./assets/63.png)
 
 ### 2.3.4 理解Rust源码的基本结构
 下面简单介绍Rust源码的结构。
