@@ -143,4 +143,6 @@ libc = "0.2.139"  # src/main.rs中使用了libc这个库
 
 ```
 
+可以使用cargo run对这个工程编译运行。
+
 
