@@ -137,24 +137,32 @@ fn main() {
 
 ## 2. 类函数宏
 类函数宏是类似于函数那样的过程宏，下面的工程演示类函数宏，其目录结构如下：
-[图片]
-（1）定义工作空间
+
+![注释](../../assets/56.png)
+
+### （1）定义工作空间
 编写最外层的Cargo.toml文件，内容如下：
+```TOML
 [workspace]
 members = [
         "./main",
         "./impl-fn-macro",
 ]
+```
 
-（2）实现impl-fn-macro
+### （2）实现impl-fn-macro
 - 修改impl-fn-macro/Cargo.toml文件如下：
+```TOML
 # impl-fn-macro/Cargo.toml文件
 
 ...
 
 [lib]   # 添加这行
 proc-macro = true # 添加这行
+```
+
 - 编写impl-fn-macro/src/lib.rs如下：
+```Rust
 // impl-fn-macro/src/lib.rs
 use proc_macro::TokenStream;
 
@@ -162,14 +170,19 @@ use proc_macro::TokenStream;
 pub fn make_answer(_item: TokenStream) -> TokenStream {
     "fn answer() -> u32 { 42 }".parse().unwrap()  // 生成answer函数
 }
+```
 
-（3）实现main
+### （3）实现main
 - 添加main需要的依赖，修改main/Cargo.toml如下：
+```TOML
 # main/Cargo.toml文件
 
 [dependencies]
 impl-fn-macro = {path = "../impl-fn-macro"}  # 添加这行
+```
+
 - 编写main/src/main.rs代码如下：
+```Rust
 // main/src/main.rs
 use impl_fn_macro::make_answer;
 make_answer!(); // 调用函数宏生成answer函数
@@ -177,20 +190,27 @@ make_answer!(); // 调用函数宏生成answer函数
 fn main() {
     println!("{}", answer());
 }
+```
 
-3. 类属性宏
+## 3. 类属性宏
 属性宏和自定义derive宏类似，不同的是derive宏生成代码，而类属性宏可以创建新的属性。自定义derive宏只能用于结构体和枚举，属性宏则还可以用于其它的项，如函数。下面的工程演示类属性宏，其目录结构如下：
-[图片]
-（1）定义工作空间
+
+![注释](../../assets/57.png)
+
+### （1）定义工作空间
 编写最外层的Cargo.toml文件，内容如下：
+```TOML
 [workspace]
 members = [
     "./main",
     "./impl-attr-macro",
 ]
-（2）实现impl-attr-macro
+```
+
+### （2）实现impl-attr-macro
 impl-attr-macro中实现了类属性宏func_info。
 - 修改impl-attr-macro/Cargo.toml文件如下：
+```TOML
 # impl-attr-macro/Cargo.toml文件
 
 ...
@@ -204,7 +224,10 @@ proc_macro = true
 syn = { version = "2.0.15", features = ["parsing", "extra-traits","full", "visit"] }
 quote = "1.0.26"
 proc-macro2 = "1.0.56"
+```
+
 - 编辑impl-attr-macro/src/lib.rs文件如下：
+```Rust
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, ItemFn};
@@ -226,14 +249,19 @@ pub fn func_info(_: TokenStream, input: TokenStream) -> TokenStream {
     func.block = syn::parse2(output).unwrap();
     quote! { #func }.into()
 }
+```
 
 （3）实现main
 - 添加main需要的依赖，修改main/Cargo.toml如下：
+```TOML
 # main/Cargo.toml文件
 
 [dependencies]
 impl-attr-macro = {path = "../impl-attr-macro"}  # 添加这行
+```
+
 - 编写main/src/main.rs代码如下：
+```Rust
 // main/src/main.rs
 use impl_attr_macro::func_info;
 
@@ -245,3 +273,5 @@ fn foo() {
 fn main() {
     foo();  // 会自动加上属性宏中的内容
 }   
+```
+
