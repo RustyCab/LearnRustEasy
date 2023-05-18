@@ -111,7 +111,7 @@ fn main() {
 ```  
 在上面的代码中，vehicle1和vehicle1都是Vehicle trait对象的引用；对于vehicle1来说，trait对象的具体类型是Car；对于vehicle2来说，trait对象的具体类型是Truck。上面代码对应的内存布局如下：
 
-  ![注释](../../assets/13.png)
+  ![注释](../../assets/14.png)
   
 变量car和变量truck分别是Car类型和Truck类型，存储在栈上；vehicle1和vehicle2是Vehicle trait对象的引用，具有两个指针，其中指针ptr指向具体类型的实例，vptr指向虚函数表；虚函数表存储在只读数据区。
   
