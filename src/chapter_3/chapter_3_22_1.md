@@ -40,7 +40,9 @@ fn main() {
 
 - 构建脚本的生命周期
 
-在项目构建之前，Cargo会将build.rs编译成可执行文件，然后执行。在执行过程中，脚本可以使用println的方式跟Cargo进行通信，通信内容的格式为：cargo:真正的内容。示例如下：
+在项目构建之前，Cargo会将build.rs编译成可执行文件，然后执行。在执行过程中，脚本可以使用println的方式跟Cargo进行通信，通信内容的格式为：cargo:真正的内容。
+
+示例如下：
 ```Rust
 // build.rs
 fn main() {
