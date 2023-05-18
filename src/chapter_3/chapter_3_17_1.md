@@ -42,6 +42,7 @@ members = [
 ]
 ```
 最后的目录层级关系如下：
+
 ![注释](../../assets/37.png)
 
 上面的步骤就创建了一个包my-pack，这个包包含两个crate，分别是my-lib和main。
