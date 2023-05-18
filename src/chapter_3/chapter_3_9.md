@@ -5,6 +5,7 @@
 ## 3.9.1 函数定义中的泛型
 
 如果没有泛型，当为不同的类型定义逻辑相同的函数时，可能如下：
+
 ```rust
 fn return_i8(v: i8) -> i8 { v }
 fn return_i16(v: i16) -> i16 { v }
@@ -27,7 +28,9 @@ fn main() {
     let _h = return_u64(2u64);
 }
 ```
+
 使用泛型后，可以在函数定义时使用泛型，在调用函数的地方指定具体的类型，如下：
+
 ```rust
 fn return_value<T>(v: T) -> T{ v }
 
@@ -47,6 +50,7 @@ fn main() {
 ## 3.9.2 结构体定义中的泛型
 
 在结构体中使用泛型的示例如下：
+
 ```rust
 #[derive(Debug)]
 struct Point<T> {
@@ -64,6 +68,7 @@ fn main() {
 ```
 
 也可以像如下方式使用：
+
 ```rust
 #[derive(Debug)]
 struct Point<T, U> {  // Point的两个字段可以指定为不同的类型
@@ -82,21 +87,25 @@ fn main() {
 
 ## 3.9.3 枚举定义中的泛型
 
-标准库的Option类型就是使用泛型的枚举类型，其定义如下：
+标准库的`Option`类型就是使用泛型的枚举类型，其定义如下：
+
 ```rust
 enum Option<T> {
     Some(T),
     None,
 }
 ```
-同样的还有Result类型，其定义如下：
+同样的还有`Result`类型，其定义如下：
+
 ```rust
 enum Result<T, E> {
     Ok(T),
     Err(E),
 }
 ```
+
 下面再举一个枚举类型中使用泛型的例子：
+
 ```rust
 enum Message<T, U> {
     Msg1(u32),
@@ -116,6 +125,7 @@ fn main() {
 ## 3.9.4 方法定义中的泛型
 
 还可以在方法中使用泛型，例子1：
+`
 ```rust
 struct Point<T> {
     x: T,
@@ -139,6 +149,7 @@ fn main() {
 ```
 
 方法中的泛型不一定和结构体中的一样，示例如下：
+
 ```rust
 struct Point<T, U> {
     x: T,

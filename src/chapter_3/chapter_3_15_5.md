@@ -5,7 +5,7 @@ Rust 中的 LinkedList（链表）是一种线性数据结构，它由一系列�
 
 ## 1. 创建 LinkedList：
 
-要创建一个新的空 LinkedList，可以使用 LinkedList::new() 方法。需要导入 std::collections::LinkedList 模块以使用 LinkedList。
+要创建一个新的空 LinkedList，可以使用 `LinkedList::new()` 方法。需要导入 `std::collections::LinkedList` 模块以使用 LinkedList。
 ```rust
 use std::collections::LinkedList;
 
@@ -14,7 +14,7 @@ let mut list = LinkedList::new();
 
 ## 2. 添加元素：
 
-可以使用 push_front() 和 push_back() 方法将元素添加到链表的开头和结尾。
+可以使用 `push_front()` 和 `push_back()` 方法将元素添加到链表的开头和结尾。
 ```rust
 list.push_front(1);
 list.push_back(2);
@@ -22,7 +22,7 @@ list.push_back(2);
 
 ## 3. 访问元素：
 
-可以使用 front() 和 back() 方法分别访问链表的第一个和最后一个元素。这些方法返回一个 Option<&T> 类型，如果链表不为空，则返回 Some(&element)，否则返回 None。
+可以使用 `front()` 和 `back()` 方法分别访问链表的第一个和最后一个元素。这些方法返回一个 `Option<&T>` 类型，如果链表不为空，则返回 `Some(&element)`，否则返回 `None`。
 
 ```rust
 let first_element = list.front(); // 返回 Option<&T>
@@ -33,7 +33,8 @@ let last_element = list.back(); // 返回 Option<&T>
 
 ## 4. 删除元素：
 
-可以使用 pop_front() 和 pop_back() 方法分别删除并返回链表的第一个和最后一个元素。这些方法返回一个 Option<T> 类型，如果链表不为空且成功删除元素，则返回 Some(element)，否则返回 None。
+可以使用 `pop_front()` 和 `pop_back()` 方法分别删除并返回链表的第一个和最后一个元素。这些方法返回一个 `Option<T>` 类型，如果链表不为空且成功删除元素，则返回 `Some(element)`，否则返回 `None`。
+
 ```rust
 list.pop_front(); // 删除并返回第一个元素
 list.pop_back(); // 删除并返回最后一个元素
@@ -41,7 +42,8 @@ list.pop_back(); // 删除并返回最后一个元素
 
 ## 5. 遍历元素：
 
-可以使用 iter() 方法遍历链表中的所有元素。iter_mut() 方法可用于遍历可变引用。
+可以使用 `iter()` 方法遍历链表中的所有元素。`iter_mut()` 方法可用于遍历可变引用。
+
 ```rust
 for element in list.iter() {
     println!("{}", element);
@@ -50,11 +52,11 @@ for element in list.iter() {
 
 ## 6. 链表长度：
 
-可以使用 len() 方法获取链表中的元素数量。还可以使用 is_empty() 方法检查链表是否为空。
+可以使用 `len()` 方法获取链表中的元素数量。还可以使用 `is_empty()` 方法检查链表是否为空。
 
 ## 7. 清空链表：
 
-可以使用 clear() 方法删除链表中的所有元素。
+可以使用 `clear()` 方法删除链表中的所有元素。
 
 ```rust
 list.clear(); // 清空链表
@@ -62,7 +64,7 @@ list.clear(); // 清空链表
 
 ## 8. 分割链表：
 
-可以使用 split_off() 方法在指定索引处分割链表。此操作会将链表分成两个链表，前一个链表包含指定索引之前的元素，后一个链表包含指定索引及之后的元素。
+可以使用 `split_off()` 方法在指定索引处分割链表。此操作会将链表分成两个链表，前一个链表包含指定索引之前的元素，后一个链表包含指定索引及之后的元素。
 
 ```rust
 let mut list1 = LinkedList::new();

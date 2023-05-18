@@ -19,267 +19,270 @@ pub trait GetInformation {
 
 ## 2. 为类型实现trait
 
-- 为类型实现trait
+### 2.1 为类型实现trait
 
-    代码示例如下：
-    ```rust
-    // 定义trait
-    pub trait GetInformation {
-        fn get_name(&self) -> &String;
-        fn get_age(&self) -> u32;
-    }
+代码示例如下：
+```rust
+// 定义trait
+pub trait GetInformation {
+    fn get_name(&self) -> &String;
+    fn get_age(&self) -> u32;
+}
 
-    pub struct Student {
-        pub name: String,
-        pub age: u32,
+pub struct Student {
+    pub name: String,
+    pub age: u32,
+}
+// 为Student类型实现GetInformation trait
+impl GetInformation for Student {
+    fn get_name(&self) -> &String {
+        &self.name
     }
-    // 为Student类型实现GetInformation trait
-    impl GetInformation for Student {
-        fn get_name(&self) -> &String {
-            &self.name
-        }
-        fn get_age(&self) -> u32 {
-            self.age
-        }
+    fn get_age(&self) -> u32 {
+        self.age
     }
+}
 
-    pub struct Teacher {
-        pub name: String,
-        pub age: u32,
+pub struct Teacher {
+    pub name: String,
+    pub age: u32,
+}
+// 为Teacher类型实现GetInformation trait
+impl GetInformation for Teacher {
+    fn get_name(&self) -> &String {
+        &self.name
     }
-    // 为Teacher类型实现GetInformation trait
-    impl GetInformation for Teacher {
-        fn get_name(&self) -> &String {
-            &self.name
-        }
-        fn get_age(&self) -> u32 {
-            self.age
-        }
+    fn get_age(&self) -> u32 {
+        self.age
     }
+}
 
-    fn main() {
-        let s = Student {
-            name: "alice".to_string(),
-            age: 18,
-        };
-        // 可以在类型Student上使用GetInfomation trait中定义的方法
-        println!("s.name = {:?}, s.age = {:?}", s.get_name(), s.get_age());
+fn main() {
+    let s = Student {
+        name: "alice".to_string(),
+        age: 18,
+    };
+    // 可以在类型Student上使用GetInfomation trait中定义的方法
+    println!("s.name = {:?}, s.age = {:?}", s.get_name(), s.get_age());
 
-        let t = Teacher {
-            name: "bob".to_string(),
-            age: 25,
-        };
-        // 可以类型Teacher使用GetInfomation trait中定义的方法
-        println!("t.name = {:?}, t.age = {:?}", t.get_name(), t.get_age());
-    }
-    ```
+    let t = Teacher {
+        name: "bob".to_string(),
+        age: 25,
+    };
+    // 可以类型Teacher使用GetInfomation trait中定义的方法
+    println!("t.name = {:?}, t.age = {:?}", t.get_name(), t.get_age());
+}
+```
 
-- 可以在trait定义时提供默认实现
+### 2.2 可以在trait定义时提供默认实现
 
-    可以在定义trait的时候提供默认的行为，trait的类型可以使用默认的行为，示例如下：
-    ```rust
-    // 定义trait
-    pub trait GetInformation {
-        fn get_name(&self) -> &String;
-        fn get_age(&self) -> u32 {   // 在定义trait时就提供默认实现
-            25u32
-        }
+可以在定义trait的时候提供默认的行为，trait的类型可以使用默认的行为，示例如下：
+```rust
+// 定义trait
+pub trait GetInformation {
+    fn get_name(&self) -> &String;
+    fn get_age(&self) -> u32 {   // 在定义trait时就提供默认实现
+        25u32
     }
+}
 
-    pub struct Student {
-        pub name: String,
-        pub age: u32,
+pub struct Student {
+    pub name: String,
+    pub age: u32,
+}
+// 为Student类型实现GetInformation trait
+impl GetInformation for Student {
+    fn get_name(&self) -> &String {
+        &self.name
     }
-    // 为Student类型实现GetInformation trait
-    impl GetInformation for Student {
-        fn get_name(&self) -> &String {
-            &self.name
-        }
-        // 实现get_age方法，Student不会使用trait定义时的默认实现
-        fn get_age(&self) -> u32 {
-            self.age
-        }
+    // 实现get_age方法，Student不会使用trait定义时的默认实现
+    fn get_age(&self) -> u32 {
+        self.age
     }
+}
 
-    pub struct Teacher {
-        pub name: String,
-        pub age: u32,
+pub struct Teacher {
+    pub name: String,
+    pub age: u32,
+}
+// 为Teacher类型实现GetInformation trait
+impl GetInformation for Teacher {
+    fn get_name(&self) -> &String {
+        &self.name
     }
-    // 为Teacher类型实现GetInformation trait
-    impl GetInformation for Teacher {
-        fn get_name(&self) -> &String {
-            &self.name
-        }
-        // 不实现get_age方法，将使用trait的默认实现
-    }
+    // 不实现get_age方法，将使用trait的默认实现
+}
 
-    fn main() {
-        let s = Student {
-            name: "alice".to_string(),
-            age: 18,
-        };
-        // 可以在类型Student上使用GetInfomation trait中定义的方法
-        // 输出t.name = "bob", t.age = 25
-        println!("s.name = {:?}, s.age = {:?}", s.get_name(), s.get_age());
+fn main() {
+    let s = Student {
+        name: "alice".to_string(),
+        age: 18,
+    };
+    // 可以在类型Student上使用GetInfomation trait中定义的方法
+    // 输出t.name = "bob", t.age = 25
+    println!("s.name = {:?}, s.age = {:?}", s.get_name(), s.get_age());
 
-        let t = Teacher {
-            name: "bob".to_string(),
-            age: 25,
-        };
-        // 可以类型Teacher使用GetInfomation trait中定义的方法（t.get_age将使用定义trait时的默认方法）
-        // 输出t.name = "bob", t.age = 25
-        println!("t.name = {:?}, t.age = {:?}", t.get_name(), t.get_age());
-    }
-    ```
+    let t = Teacher {
+        name: "bob".to_string(),
+        age: 25,
+    };
+    // 可以类型Teacher使用GetInfomation trait中定义的方法（t.get_age将使用定义trait时的默认方法）
+    // 输出t.name = "bob", t.age = 25
+    println!("t.name = {:?}, t.age = {:?}", t.get_name(), t.get_age());
+}
+```
 
 如果定义trait时提供了某个方法的默认实现，则：
-    - 如果为类型实现该trait时，为该类型实现了此方法，则使用自己实现的方法（如上面示例中的Student类型）；
-    - 如果为类型实现该trait时，没有为该类型实现此方法，则该类型使用trait提供的默认实现（如上面的Teacher类型）。
+- 如果为类型实现该trait时，为该类型实现了此方法，则使用自己实现的方法（如上面示例中的Student类型）；
+- 如果为类型实现该trait时，没有为该类型实现此方法，则该类型使用trait提供的默认实现（如上面的Teacher类型）。
 
 ## 3. trait作为参数
 
-- trait作为参数
-    trait可以用来参数，示例如下：
+### 3.1 trait作为参数
 
-    ```rust
-    // 定义trait
-    pub trait GetInformation {
-        fn get_name(&self) -> &String;
-        fn get_age(&self) -> u32 {
-            25u32
-        }
+trait可以用来参数，示例如下：
+
+```rust
+// 定义trait
+pub trait GetInformation {
+    fn get_name(&self) -> &String;
+    fn get_age(&self) -> u32 {
+        25u32
     }
+}
 
-    pub struct Student {
-        pub name: String,
-        pub age: u32,
+pub struct Student {
+    pub name: String,
+    pub age: u32,
+}
+// 为Student类型实现GetInformation trait
+impl GetInformation for Student {
+    fn get_name(&self) -> &String {
+        &self.name
     }
-    // 为Student类型实现GetInformation trait
-    impl GetInformation for Student {
-        fn get_name(&self) -> &String {
-            &self.name
-        }
-        fn get_age(&self) -> u32 {
-            self.age
-        }
+    fn get_age(&self) -> u32 {
+        self.age
     }
+}
 
-    pub struct Teacher {
-        pub name: String,
-        pub age: u32,
+pub struct Teacher {
+    pub name: String,
+    pub age: u32,
+}
+// 为Teacher类型实现GetInformation trait
+impl GetInformation for Teacher {
+    fn get_name(&self) -> &String {
+        &self.name
     }
-    // 为Teacher类型实现GetInformation trait
-    impl GetInformation for Teacher {
-        fn get_name(&self) -> &String {
-            &self.name
-        }
+}
+
+// 参数类型必须是实现了GetInfomation trait的类型
+pub fn print_information(item: impl GetInformation) {
+    println!("name = {}", item.get_name());
+    println!("age = {}", item.get_age());
+}
+
+fn main() {
+    let s = Student {
+        name: "alice".to_string(),
+        age: 18,
+    };
+    print_information(s);
+
+    let t = Teacher {
+        name: "bob".to_string(),
+        age: 25,
+    };
+    print_information(t);
+}
+```
+
+在上面的例子中，函数`pub fn print_information(item: impl GetInformation)`的要求参数item必须实现`GetInformation trait`，否则无法调用该参数。
+
+### 3.2 使用`trait bound`语法
+
+
+上面中的print_information函数还可以写成如下：
+```rust
+// 使用trait bound的写法一
+pub fn print_information<T: GetInformation>(item: T) {
+    println!("name = {}", item.get_name());
+    println!("age = {}", item.get_age());
+}
+```
+
+这种写法叫做Trait bound语法，它是Rust中用于指定泛型类型参数所需的trait的一种方式，它还可以使用where关键字写成如下：
+```rust
+// 使用trait bound的写法二
+pub fn print_information<T>(item: T)
+where
+    T: GetInformation,
+{
+    println!("name = {}", item.get_name());
+    println!("age = {}", item.get_age());
+}
+```
+
+### 3.3 通过“`+`”指定多个trait bound
+
+可以要求类型实现多个trait，示例如下：
+```rust
+pub trait GetName {
+    fn get_name(&self) -> &String;
+}
+pub trait GetAge {
+    fn get_age(&self) -> u32;
+}
+
+//使用trait bound写法一，类型T必须实现GetName和GetAge trait
+pub fn print_information1<T: GetName + GetAge>(item: T) {
+    println!("name = {}", item.get_name());
+    println!("age = {}", item.get_age());
+}
+
+//使用trait bound写法二，类型T必须实现GetName和GetAge trait
+pub fn print_information2<T>(item: T)
+where
+    T: GetName + GetAge,
+{
+    println!("name = {}", item.get_name());
+    println!("age = {}", item.get_age());
+}
+
+#[derive(Clone)]
+struct Student {
+    name: String,
+    age: u32,
+}
+
+impl GetName for Student {
+    fn get_name(&self) -> &String {
+        &self.name
     }
+}
 
-    // 参数类型必须是实现了GetInfomation trait的类型
-    pub fn print_information(item: impl GetInformation) {
-        println!("name = {}", item.get_name());
-        println!("age = {}", item.get_age());
+impl GetAge for Student {
+    fn get_age(&self) -> u32 {
+        self.age
     }
+}
 
-    fn main() {
-        let s = Student {
-            name: "alice".to_string(),
-            age: 18,
-        };
-        print_information(s);
+fn main() {
+    let s = Student {
+        name: "alice".to_string(),
+        age: 18u32,
+    };
+    print_information1(s.clone());
+    print_information1(s);
+}
+```
 
-        let t = Teacher {
-            name: "bob".to_string(),
-            age: 25,
-        };
-        print_information(t);
-    }
-    ```
-
-    在上面的例子中，函数`pub fn print_information(item: impl GetInformation)`的要求参数item必须实现`GetInformation trait`，否则无法调用该参数。
-
-- 使用`trait bound`语法
-
-    上面中的print_information函数还可以写成如下：
-    ```rust
-    // 使用trait bound的写法一
-    pub fn print_information<T: GetInformation>(item: T) {
-        println!("name = {}", item.get_name());
-        println!("age = {}", item.get_age());
-    }
-    ```
-
-    这种写法叫做Trait bound语法，它是Rust中用于指定泛型类型参数所需的trait的一种方式，它还可以使用where关键字写成如下：
-    ```rust
-    // 使用trait bound的写法二
-    pub fn print_information<T>(item: T)
-    where
-        T: GetInformation,
-    {
-        println!("name = {}", item.get_name());
-        println!("age = {}", item.get_age());
-    }
-    ```
-
-- 通过“`+`”指定多个trait bound
-
-    可以要求类型实现多个trait，示例如下：
-    ```rust
-    pub trait GetName {
-        fn get_name(&self) -> &String;
-    }
-    pub trait GetAge {
-        fn get_age(&self) -> u32;
-    }
-
-    //使用trait bound写法一，类型T必须实现GetName和GetAge trait
-    pub fn print_information1<T: GetName + GetAge>(item: T) {
-        println!("name = {}", item.get_name());
-        println!("age = {}", item.get_age());
-    }
-
-    //使用trait bound写法二，类型T必须实现GetName和GetAge trait
-    pub fn print_information2<T>(item: T)
-    where
-        T: GetName + GetAge,
-    {
-        println!("name = {}", item.get_name());
-        println!("age = {}", item.get_age());
-    }
-
-    #[derive(Clone)]
-    struct Student {
-        name: String,
-        age: u32,
-    }
-
-    impl GetName for Student {
-        fn get_name(&self) -> &String {
-            &self.name
-        }
-    }
-
-    impl GetAge for Student {
-        fn get_age(&self) -> u32 {
-            self.age
-        }
-    }
-
-    fn main() {
-        let s = Student {
-            name: "alice".to_string(),
-            age: 18u32,
-        };
-        print_information1(s.clone());
-        print_information1(s);
-    }
-    ```
-
-    在上面的代码中，`print_information1`和`print_information2`函数要求其参数类型T必须实现`GetName`和`GetAge`两个trait，通过`+`来进行多个约束的连接。
+在上面的代码中，`print_information1`和`print_information2`函数要求其参数类型T必须实现`GetName`和`GetAge`两个trait，通过`+`来进行多个约束的连接。
 
 ## 4. 返回trait的类型
 
 trait类型可以作为函数的返回类型，示例如下：
+
 ```rust
 pub trait GetName {
     fn get_name(&self) -> &String;
@@ -310,6 +313,7 @@ fn main() {
 ```
 
 上面代码中，`produce_item_with_name`函数返回了一个实现了`GetName trait`的类型。不过需要注意的是，这种方式返回的是单一类型，例如如下的代码就是错误的，无法编译通过：
+
 ```rust
 pub trait GetName {
     fn get_name(&self) -> &String;
@@ -357,6 +361,7 @@ fn main() {
 
 错误原因分析（非常重要）：
 上面的代码中的`produce_item_with_name`函数的定义实际上等价于如下：
+
 ```rust
 pub fn produce_item_with_name<T: GetName>(is_teacher: bool) -> T {
     ...
@@ -506,4 +511,5 @@ fn main() {
     s.print_name(); //student实现了GetName trait，因此可是直接使用PrintName trait中的函数print_name
 }
 ```
+
 上面的例子中，就是为实现了`GetName trait`的类型实现`PrintName trait`。
