@@ -251,7 +251,7 @@ pub fn func_info(_: TokenStream, input: TokenStream) -> TokenStream {
 }
 ```
 
-（3）实现main
+### （3）实现main
 - 添加main需要的依赖，修改main/Cargo.toml如下：
 ```TOML
 # main/Cargo.toml文件
