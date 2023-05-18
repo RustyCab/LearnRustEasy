@@ -84,4 +84,81 @@ Weak类似于Rc，但它不持有所有权，它仅仅保存一份指向数据�
     
 
 对于上一节中循环链表的例子，使用Weak实现为如下：
-  
+```Rust
+use crate::List::{Cons, Nil};
+use std::cell::RefCell;
+use std::rc::Rc;
+use std::rc::Weak;
+
+#[derive(Debug)]
+enum List {
+    Cons(i32, RefCell<Weak<List>>),
+    Nil,
+}
+
+impl List {
+    fn tail(&self) -> Option<&RefCell<Weak<List>>> {
+        match self {
+            Cons(_, item) => Some(item),
+            Nil => None,
+        }
+    }
+}
+
+fn main() {
+    let a = Rc::new(Cons(5, RefCell::new(Weak::new())));
+
+    println!(
+        "a initial rc count = {}, weak cnt = {}",
+        Rc::strong_count(&a),
+        Rc::weak_count(&a)
+    );
+    println!("a next item = {:?}", a.tail());
+
+    let b = Rc::new(Cons(10, RefCell::new(Weak::new())));
+    if let Some(link) = b.tail() {
+        *link.borrow_mut() = Rc::downgrade(&a);
+    }
+
+    println!(
+        "a rc count after b creation = {}, weak cnt = {}",
+        Rc::strong_count(&a),
+        Rc::weak_count(&a)
+    );
+    println!(
+        "b initial rc count = {}, weak cnt = {}",
+        Rc::strong_count(&b),
+        Rc::weak_count(&b)
+    );
+    println!("b next item = {:?}", b.tail());
+
+    if let Some(link) = a.tail() {
+        *link.borrow_mut() = Rc::downgrade(&b);
+    }
+
+    println!(
+        "b rc count after changing a = {}, b weak cnt = {}",
+        Rc::strong_count(&b),
+        Rc::weak_count(&b)
+    );
+    println!(
+        "a rc count after changing a = {}, a weak cnt = {}",
+        Rc::strong_count(&a),
+        Rc::weak_count(&a)
+    );
+
+    // Uncomment the next line to see that we have a cycle;
+    // it will overflow the stack
+    println!("a next item = {:?}", a.tail());
+}
+```
+下图为上面代码的内存布局示意图：
+    
+![注释](../../assets/34.png) 
+
+下面再总结一下Weak的特点：
+
+- 可访问，但没有所有权，不增加引用计数，因此不会影响被引用值的释放回收；
+- 可由Rc<T>调用downgrade方法转换成Weak<T>；
+- Weak<T>可使用upgrade方法转换成Option<Rc<T>>，如果资源已经被释放，则Option的值是None；
+- 常用于解决循环引用的问题。
