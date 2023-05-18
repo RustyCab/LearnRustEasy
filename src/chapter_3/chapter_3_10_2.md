@@ -4,7 +4,9 @@
 
 ## 1. 使用trait对象
 
-在Rust中，trait自身不能当作数据类型来使用，但trait 对象可以当作数据类型使用。因此，可以将实现了Trait A的类型B、C、D当作trait A的trait对象来使用。使用trait对象时，基本都是以引用的方式使用，所以使用时通常是引用符号加dyn关键字（即&dyn）。示例如下：
+在Rust中，trait自身不能当作数据类型来使用，但trait 对象可以当作数据类型使用。因此，可以将实现了Trait A的类型B、C、D当作trait A的trait对象来使用。使用trait对象时，基本都是以引用的方式使用，所以使用时通常是引用符号加dyn关键字（即&dyn）。
+
+示例如下：
 ```Rust
 trait GetName {
     fn get_name(&self);
