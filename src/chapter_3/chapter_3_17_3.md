@@ -28,7 +28,7 @@ cd main
 
 打开main目录下的Cargo.toml文件，在[dependencies]下添加对rand库的依赖（即添加语句rand = "0.8.5"），添加后整个文件的内容如下：
 
-![注释](../../assets/39.png)
+![注释](.././assets/39.png)
 
 ### （3）在代码中使用rand库
 编写src/main.rs如下：

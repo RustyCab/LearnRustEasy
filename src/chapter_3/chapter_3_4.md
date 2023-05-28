@@ -99,4 +99,4 @@ cargo doc --open
 
 将打开上面代码里面文档注释生成的文档，如下图：
 
-![注释](../assets/1.png)
+![注释](./assets/1.png)

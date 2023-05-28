@@ -8,7 +8,7 @@
 
 下面示例展示在c中调用Rust，其目录结构如下：
 
-![注释](../../assets/53.png)
+![注释](.././assets/53.png)
 
 
 目录中的foo是Rust代码，用cargo new foo --lib创建，其中src/lib.rs的代码如下：
@@ -53,4 +53,4 @@ int main()
 
 在main.c同级目录运行命令```gcc -o main main.c ./foo/target/debug/libfoo.a -lpthread -ldl```会生成执行文件main，如下图：
 
-![注释](../../assets/54.png)
+![注释](.././assets/54.png)

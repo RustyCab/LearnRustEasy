@@ -73,7 +73,7 @@ cargo test add_two_and_two
 
 执行结果如下图：
 
-![注释](../../assets/59.png)
+![注释](.././assets/59.png)
 
 ## 4. 过滤运行测试
 
@@ -84,7 +84,7 @@ cargo test add
 
 执行结果如下图：
 
-![注释](../../assets/60.png)
+![注释](.././assets/60.png)
 
 ## 5. 忽略某个测试
 有时候运行cargo test时想忽略其中的某个测试，此时可以通过使用ignore属性来标记该测试来排除它。例如有如下测试代码：
@@ -116,4 +116,4 @@ mod tests {
 ```
 上面的代码中将add_two_and_two用#[ignore]忽略，运行cargo test将不会执行该函数，执行结果如下：
 
-![注释](../../assets/61.png)
+![注释](.././assets/61.png)

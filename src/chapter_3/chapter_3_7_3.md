@@ -48,7 +48,7 @@ fn main() {
 
 `&str`和`&String`的内存布局如下：
 
-![注释](../../assets/13.png)
+![注释](.././assets/13.png)
 
 ## 3. 其它Slice
 

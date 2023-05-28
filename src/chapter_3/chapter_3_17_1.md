@@ -18,11 +18,11 @@ cargo new main
 
 进入main文件夹，其目录层级如下：
 
-![注释](../../assets/35.png)
+![注释](.././assets/35.png)
 
 其中Cargo.toml的内容如下：
 
-![注释](../../assets/36.png)
+![注释](.././assets/36.png)
 
 可以看到这个crate的名字为main。
 
@@ -50,6 +50,6 @@ members = [
 
 最后的目录层级关系如下：
 
-![注释](../../assets/37.png)
+![注释](.././assets/37.png)
 
 上面的步骤就创建了一个包my-pack，这个包包含两个crate，分别是my-lib和main。

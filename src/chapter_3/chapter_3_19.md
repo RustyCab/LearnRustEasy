@@ -13,7 +13,7 @@ pub mod sub;
 
 运行```cargo doc --open```出现如下界面：
 
-![注释](../../assets/41.png)
+![注释](.././assets/41.png)
 
 而下面的示例因为没有将所有的包注释放在文件最上面，所以会报错：
 ```Rust
@@ -74,13 +74,13 @@ pub fn add2(left: u32, right: u32) -> Option<u32> {
 
 运行cargo test，可以看到运行了用例add::add2，如下：
 
-![注释](../../assets/44.png)
+![注释](.././assets/44.png)
 
 运行cargo doc --open后，打开add和add2的文档，分别如下：
 
-![注释](../../assets/46.png)
+![注释](.././assets/46.png)
 
-![注释](../../assets/45.png)
+![注释](.././assets/45.png)
 
 
 可以看到add2对应的测试用例的内容在文档中被隐藏了。
@@ -98,7 +98,7 @@ pub fn sub(left: u32, right: u32) -> Option<u32> {
 ```
 运行cargo doc --open后，出现如下：
 
-![注释](../../assets/42.png)
+![注释](.././assets/42.png)
 
 从上图中，点击红色划线部分将分别跳转到标准库的Option和crate::add的位置。
 
@@ -112,4 +112,4 @@ pub struct A;
 
 运行cargo doc --open后，出现如下：
 
-![注释](../../assets/43.png)
+![注释](.././assets/43.png)

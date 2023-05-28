@@ -68,6 +68,6 @@ fn main() {
 
 在上面的示例中，通过my-project/Cargo.toml文件管理了main和add两个crate，上面所有步骤完成后，整个项目构成如下：
 
-![注释](../../assets/40.png)
+![注释](.././assets/40.png)
 
 在my-project目录下或者my-project/main目录下运行cargo run可以编译执行整个项目。

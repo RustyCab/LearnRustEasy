@@ -15,11 +15,11 @@ fn main() {
 
 运行该程序会打印如下错误：
 
- ![注释](../../assets/16.png)
+ ![注释](.././assets/16.png)
 
 运行时添加```RUST_BACKTRACE=1```，可以打印完整的堆栈，上面的代码运行时加```RUST_BACKTRACE=1```的结果如下：
 
-![注释](../../assets/17.png)
+![注释](.././assets/17.png)
 
 ## 3.12.2 用Result处理可恢复错误
 
