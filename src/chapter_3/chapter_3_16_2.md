@@ -5,7 +5,8 @@
 ## 1. Box的基本使用方式
 
 下面为```Box```使用的简单示例：
-```Rust
+
+```rust
 fn main() {
     let b = Box::new(5); //此时5存储在堆上而不是栈上，b本身存储于栈上
     println!("b = {}", b); //离开作用域时同时清楚堆和栈上的数据
@@ -27,7 +28,8 @@ fn main() {
 
 ### （1）场景1示例：
 假定我们需要采用递归的方式定义一个```List```，其定义可能如下：
-```Rust
+
+```rust
 // 下面的代码无法编译通过
 use crate::List::{Nil, Cons};
 enum List {
@@ -48,7 +50,8 @@ fn main() {
 ![注释](.././assets/22.png)
 
 此时就需要使用Box，其代码如下：
-```Rust
+
+```rust
 use crate::List::{Nil, Cons};
 enum List {
     Cons(i32, Box<List>),   // 用Box就把它变成了一个指针，Cons就类似于c语言的结构体定义：
@@ -70,7 +73,8 @@ fn main() {
 每个Box的大小是固定的，所以编译不会有问题。
 
 ### （2）场景2示例：
-```Rust
+
+```rust
 fn main() {
     let b = Box::new([100u32; 100]);
     println!("b = {:?}", b);
@@ -82,7 +86,8 @@ fn main() {
 ```
 
 ### （3）场景3示例：
-```Rust
+
+```rust
 trait Vehicle {
     fn run(&self);
 }
@@ -118,4 +123,3 @@ fn main() {
     vehicle_run(v2);
 }
 ```
-

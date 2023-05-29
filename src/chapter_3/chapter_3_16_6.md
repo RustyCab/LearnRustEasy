@@ -5,7 +5,7 @@
 **内部可变性（Interior mutability）** 是Rust中的一个设计模式，它允许在有不可变引用时改变数据，这通常是借用规则所不允许的。RefCell正是为Rust提供内部可变性的智能指针。
 在Rust中，当使用mut或者&mut显示的声明一个变量或者引用时，才能修改它们的值。编译器会对此严格检查。
 
-```Rust
+```rust
 let mut a = 1u32;
 a = 2u32;         // 可以修改a的值
 let b = 3u32;
@@ -14,7 +14,7 @@ b = 4u32;         //  报错，不允许修改
 
 但是当使用RefCell时，可以对其内部包含的内容进行修改，如下：
 
-```Rust
+```rust
 use std::cell::RefCell;
 fn main() {
     let data = RefCell::new(1);              // data本身是不可变变量
@@ -32,7 +32,7 @@ fn main() {
 
 下面是另一个使用RefCell的例子：
 
-```Rust
+```rust
 #[derive(Debug)]
 enum List {
     Cons(Rc<RefCell<i32>>, Rc<List>),
@@ -61,7 +61,7 @@ fn main() {
 
 下面是一个使用RefCell时容易犯错的例子：
 
-```Rust
+```rust
 use std::cell::RefCell;
 fn main() {
     let data = RefCell::new(1); // data本身是不可变变量
@@ -75,7 +75,7 @@ fn main() {
 > ***分析：此处需要注意的是，对于RefCell的可变引用、不可变引用的作用域范围（Rust 1.68.2中），其定义方式还是从定义开始，到花括号前结束。这和普通引用是不一样的，因为在新版编译器中（1.31以后），普通引用的作用域范围变成了从定义开始，到不再使用结束。因此，下面的代码是可以正确的***：
 
 
-```Rust
+```rust
 fn main() {
     let mut a = 5u32;
     let b = &mut a; // b是可变引用

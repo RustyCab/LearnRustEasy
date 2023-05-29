@@ -13,7 +13,7 @@ Slice（切片）类型，表示引用集合中一段连续的元素序列。Sli
 
 Rust中几乎总是使用切片数据的引用。切片数据的引用对应的数据类型描述为`&[T]`或`&mut [T]`，前者不可通过Slice引用来修改源数据，后者可修改源数据。示例如下：
 
-```Rust
+```rust
 fn main(){
   let mut arr = [11,22,33,44];
 
@@ -36,7 +36,7 @@ Slice类型是一个胖指针，包含两个字段：
 
 `String`的切片类型为`&str`而不是`&String`，其使用方式如下：
 
-```Rust
+```rust
 fn main() {
     let s = String::from("hello world!");
     let s1 = &s[6..];   // 切片类型&str
@@ -54,7 +54,7 @@ fn main() {
 
 数组的Slice，如下：
 
-```Rust
+```rust
 fn main() {
     let a: [u32; 5] = [1, 2, 3, 4, 5];
     let b = &a[1..3];
@@ -64,7 +64,7 @@ fn main() {
 
 Vec的Slice，如下：
 
-```Rust
+```rust
 fn main() {
     let v: Vec<u32> = vec![1, 2, 3, 4, 5];
     let b = &v[1..3];

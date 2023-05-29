@@ -6,7 +6,7 @@
 
 为一个类型实现`Drop trait`的示例如下：
 
-```Rust
+```rust
 struct Dog(String);
 
 //下面为Dog实现Drop trait
@@ -32,7 +32,7 @@ fn main() {
 
 当要显示的清理值时，不能直接调用Drop trait里面的drop方法，而要使用`std::mem::drop`方法，示例如下：
 
-```Rust
+```rust
 struct Dog(String);
 
 //下面为Dog实现Drop trait

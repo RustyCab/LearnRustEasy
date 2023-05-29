@@ -1,13 +1,13 @@
 # 3.17.2 模块 (Module)
 ## 1. 使用模块对代码分组
 使用模块方便对代码进行分组，以提高可读性和重用性，例如如下代码：
-```Rust
+```rust
 fn main() {
     println!("Produce something!");
 }
 ```
 将其中的打印代码放入到一个模块中，变成如下：
-```Rust
+```rust
 mod factory {  // 创建一个模块
     pub fn produce() { // 将打印函数放在模块中
         println!("Produce something!");
@@ -21,7 +21,7 @@ fn main() {
 
 ## 2. 定义模块控制作用域和私有性
 使用模块可以控制作用域和私有性，示例如下：
-```Rust
+```rust
 mod factory {
     pub struct PubStruct {
         // 该结构体被定义为公有，外部可以使用
@@ -32,9 +32,9 @@ mod factory {
         // 该结构体定义为私有，外部无法使用
         i: u32,
     }
-    
+
     // 该函数被定义为公有，外部可以使用
-    pub fn function1() { 
+    pub fn function1() {
         let p1 = PubStruct { i: 3u32 };
         println!("p1 = {:?}", p1.i);
         let p2 = PrivateStruct { i: 3u32 };
@@ -70,7 +70,7 @@ fn main() {
 - 绝对路径（absolute path）：以 crate root开头的全路径；对于外部 crate 的代码，是以 crate 名开头的绝对路径，对于对于当前 crate 的代码，则以字面值 crate 开头。
 - 相对路径（relative path）：从当前模块开始，以 self、super 或当前模块的标识符开头。
 
-```Rust
+```rust
 mod parent {
     pub struct A(pub u32);
 
@@ -92,7 +92,7 @@ fn main() {
 
 ## 4. 使用use关键字引入作用域
 在外部使用模块中的每个项都带上路径会显得比较重复，可以使用use关键字引入路径，示例如下：
-```Rust
+```rust
 mod parent {
     pub struct A(pub u32);
 
@@ -123,7 +123,7 @@ fn main() {
 ```
 
 还可以使用as关键字为引入的项提供新的名字，示例如下：
-```Rust
+```rust
 pub mod factory {
     pub fn produce() {
         println!("Produce something!");
@@ -140,7 +140,7 @@ fn main() {
 我们将上面第4点中的第二个例子拆成多个文件，步骤如下：
 
 - 创建一个factory.rs，其内容为mod factory中的内容：
-```Rust
+```rust
 // src/factory.rs
 pub fn produce() {
     println!("Produce something!");
@@ -148,7 +148,7 @@ pub fn produce() {
 ```
 
 - 在main.rs中导出mod，如下：
-```Rust
+```rust
 // src/main.rs
 mod factory; // 导出factory module，module名字和文件名字同名
 

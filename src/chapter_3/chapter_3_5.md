@@ -11,7 +11,7 @@ Rust中的控制流结构主要包括：
 
 - `if`执行条件判断，示例如下：
 
-    ```Rust
+    ```rust
     fn main() {
         let a = 2u32;
 
@@ -25,7 +25,7 @@ Rust中的控制流结构主要包括：
 
 - `if - else if`处理多重条件，示例如下：
 
-    ```Rust
+    ```rust
     fn main() {
         let a = 3u32;
 
@@ -49,7 +49,7 @@ Rust中的控制流结构主要包括：
 
    `if`是一个表达式，所以可以在`let`右侧使用，如下：
 
-    ```Rust
+    ```rust
     fn main() {
         let a = 3u32;
 
@@ -71,7 +71,7 @@ Rust中的控制流结构主要包括：
 
 - loop重复执行代码
 
-    ```Rust
+    ```rust
     fn main() {
         // 一直循环打印 again
         loop {
@@ -82,7 +82,7 @@ Rust中的控制流结构主要包括：
 
 - 使用`break`终止循环
 
-    ```Rust
+    ```rust
     fn main() {
         let mut counter = 0;
 
@@ -97,7 +97,7 @@ Rust中的控制流结构主要包括：
     }
     ```
     上面的代码将打印10次，遇到`break`后终止循环。另外，`break`也可以返回值，如下：
-    ```Rust
+    ```rust
     fn main() {
         let mut counter = 0;
 
@@ -115,7 +115,7 @@ Rust中的控制流结构主要包括：
 
 - 使用`continue`可以直接跳到下一轮循环
 
-    ```Rust
+    ```rust
     fn main() {
         let mut x = 0;
         // 此循环将只打印10以内的奇数
@@ -136,7 +136,7 @@ Rust中的控制流结构主要包括：
 
 - `while`条件循环执行代码，当条件不满足后结束循环，如下：
 
-    ```Rust
+    ```rust
     fn main() {
         let mut cnt = 0u32;
         while cnt < 10 {
@@ -148,7 +148,7 @@ Rust中的控制流结构主要包括：
 
 - 在`while`循环中也可以使用`break`和`continue`，如下：
 
-    ```Rust
+    ```rust
     fn main() {
         let mut x = 0;
 
@@ -169,7 +169,7 @@ Rust中的控制流结构主要包括：
 
 `for`循环用来对一个集合的每个元素执行一些代码，使用方式如下：
 
-```Rust
+```rust
 fn main() {
     let a = [10, 20, 30, 40, 50];
 

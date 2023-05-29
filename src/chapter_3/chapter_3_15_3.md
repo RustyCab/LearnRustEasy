@@ -8,7 +8,6 @@ Rust 中的 HashMap（哈希映射）是一个基于键值对的无序集合，�
 要创建一个新的空 HashMap，可以使用 `HashMap::new()` 方法。需要导入 `std::collections::HashMap` 模块以使用 HashMap。
 
 ```rust
-
 use std::collections::HashMap;
 
 let mut map = HashMap::new();
@@ -17,6 +16,7 @@ let mut map = HashMap::new();
 ## 2. 插入键值对：
 
 可以使用 `insert()` 方法向 HashMap 中添加键值对。如果使用相同的键插入新值，旧值将被替换。
+
 ```rust
 map.insert("one", 1);
 map.insert("two", 2);
@@ -51,6 +51,7 @@ map.remove("one"); // 删除键为 "one" 的键值对
 ## 6. 检查键是否存在：
 
 可以使用 `contains_key()` 方法检查 HashMap 中是否存在指定的键。
+
 ```rust
 let has_key = map.contains_key("one"); // 返回布尔值
 ```
@@ -58,6 +59,7 @@ let has_key = map.contains_key("one"); // 返回布尔值
 ## 7. 更新值：
 
 可以使用 `entry()` 方法与 `or_insert()` 方法结合，更新 HashMap 中的值或插入新值。
+
 ```rust
 *map.entry("three").or_insert(3) += 1;
 ```

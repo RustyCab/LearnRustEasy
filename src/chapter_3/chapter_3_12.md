@@ -7,7 +7,7 @@ Rust将错误分为两大类：可恢复的和不可恢复的错误。
 ## 3.12.1 用panic!处理不可恢复错误
 
 `panic!`的使用方式如下：
-```Rust
+```rust
 fn main() {
     panic!("crash and burn");
 }
@@ -27,7 +27,7 @@ fn main() {
 
 Rust中使用```Result```类型处理可恢复错误，其定义如下：
 
-```Rust
+```rust
 enum Result<T, E> {
     Ok(T),
     Err(E),
@@ -40,7 +40,7 @@ enum Result<T, E> {
 
 使用示例如下：
 
-```Rust
+```rust
 use std::fs::File;
 fn main() {
     let f = File::open("hello.txt");
@@ -57,7 +57,7 @@ fn main() {
 
 第3行返回的结果就是一个```Result```类型，可以使用```match```匹配```Result```的具体类型。下面为使用```str```作为```Result<T, E>```中的错误```E```的例子：
 
-```Rust
+```rust
 // 该函数返回结果为Result<T, E>，其中T为（），E为具有静态生命周期的&str类型
 fn produce_error(switch: bool) -> Result<(), &'static str> {
     if switch {
@@ -86,7 +86,7 @@ fn main() {
 
 #### 3.1 使用unwrap简写：
 
-```Rust
+```rust
 use std::fs::File;
 fn main() {
     let f = File::open("hello.txt").unwrap();   //使用unwrap简写来获取到Result中的T类型，
@@ -96,7 +96,7 @@ fn main() {
 
 #### 3.2 使用except简写：
 
-```Rust
+```rust
 use std::fs::File;
 
 fn main() {
@@ -111,7 +111,7 @@ fn main() {
 
 除了函数中处理错误外，还可以选择让调用者知道这个错误并决定如何处理，这叫做传播错误。示例如下：
 
-```Rust
+```rust
 fn produce_error(switch: bool) -> Result<(), &'static str> {
     if switch {
         return Err("This is a error");
@@ -145,7 +145,7 @@ fn main() {
 
 传播错误可以用```？```进行简写，上面的```transmit_error```函数代码用简写方式示例如下：
 
-```Rust
+```rust
 fn produce_error(switch: bool) -> Result<(), &'static str> {
     if switch {
         return Err("This is a error");
@@ -175,7 +175,7 @@ fn main() {
 
 下面是更复杂的简写：
 
-```Rust
+```rust
 use std::io;
 use std::io::Read;
 use std::fs::File;

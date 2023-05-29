@@ -9,7 +9,8 @@
 
 ## 1. 自定义derive宏
 在本书之前就已经见到过的结构体上的#[derive(Copy, Debug, Clone)]就是自定义derive宏，其功能实际上就是为类型生成对应的代码。例如下面的代码：
-```Rust
+
+```rust
 #[derive(Copy)]
 struct A {
     a: u32,
@@ -36,7 +37,7 @@ struct A {
 ```TOML
 [workspace]
 members = [
-        "./main", 
+        "./main",
         "./impl-derive",
         "./my-trait",
 ]
@@ -45,7 +46,8 @@ members = [
 ### （1）实现my-trait
 - 运行cargo new my-trait --lib创建；
 - 编写src/lib.rs代码如下：
-```Rust
+
+```rust
 // my-trait/src/lib.rs
 pub trait MyTrait{  // 定义MyTrait
     fn do_something();
@@ -68,7 +70,7 @@ edition = "2021"
 # 下面的几行为添加的内容
 #######################
 [lib]
-proc-macro = true  
+proc-macro = true
 
 [dependencies]
 syn = "2.0.15"
@@ -76,7 +78,7 @@ quote = "1.0.26"
 ```
 
 - 编写src/lib.rs如下：
-```Rust
+```rust
 // impl-derive/src/lib.rs
 extern crate proc_macro;
 use crate::proc_macro::TokenStream;
@@ -122,7 +124,7 @@ impl-derive = {path = "../impl-derive"} # 添加这行
 ```
 
 - 编写src/lib.rs：
-```Rust
+```rust
 // main/src/lib.rs
 use my_trait::MyTrait;
 use impl_derive::MyDeriveMacro;
@@ -162,7 +164,7 @@ proc-macro = true # 添加这行
 ```
 
 - 编写impl-fn-macro/src/lib.rs如下：
-```Rust
+```rust
 // impl-fn-macro/src/lib.rs
 use proc_macro::TokenStream;
 
@@ -182,7 +184,7 @@ impl-fn-macro = {path = "../impl-fn-macro"}  # 添加这行
 ```
 
 - 编写main/src/main.rs代码如下：
-```Rust
+```rust
 // main/src/main.rs
 use impl_fn_macro::make_answer;
 make_answer!(); // 调用函数宏生成answer函数
@@ -216,7 +218,7 @@ impl-attr-macro中实现了类属性宏func_info。
 ...
 
 ## 添加下面2行
-[lib]  
+[lib]
 proc_macro = true
 
 [dependencies]
@@ -227,7 +229,7 @@ proc-macro2 = "1.0.56"
 ```
 
 - 编辑impl-attr-macro/src/lib.rs文件如下：
-```Rust
+```rust
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, ItemFn};
@@ -261,7 +263,7 @@ impl-attr-macro = {path = "../impl-attr-macro"}  # 添加这行
 ```
 
 - 编写main/src/main.rs代码如下：
-```Rust
+```rust
 // main/src/main.rs
 use impl_attr_macro::func_info;
 
@@ -272,6 +274,5 @@ fn foo() {
 
 fn main() {
     foo();  // 会自动加上属性宏中的内容
-}   
+}
 ```
-

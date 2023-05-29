@@ -5,7 +5,8 @@
 
 build.rs中可以进行真正的项目代码编译前需要的额外的工作，例如在编译前为项目生成对应的文件、代码，编译所依赖的外部语言库等。build.rs放置在正式代码的外面（也就是src的外面）。
 下面示例在build.rs中生成一个文件，然后在正式的项目代码中读取这个文件，build.rs中的代码如下：
-```Rust
+
+```rust
 // build.rs
 use std::fs;
 
@@ -16,7 +17,8 @@ fn main() -> std::io::Result<()> {
 ```
 
 src/main.rs中的代码如下：
-```Rust
+
+```rust
 // src/main.rs
 use std::fs;
 fn main() {
@@ -43,10 +45,11 @@ fn main() {
 在项目构建之前，Cargo会将build.rs编译成可执行文件，然后执行。在执行过程中，脚本可以使用println的方式跟Cargo进行通信，通信内容的格式为：cargo:真正的内容。
 
 示例如下：
-```Rust
+
+```rust
 // build.rs
 fn main() {
-    println!("cargo:rustc-link-search=/usr/local/lib/");  
+    println!("cargo:rustc-link-search=/usr/local/lib/");
     println!("cargo:rustc-link-lib=dylib=pcre2-8");
     println!("cargo:rerun-if-changed=src/lib.rs");
 }
@@ -68,6 +71,7 @@ fn main() {
 - 构建脚本的依赖
 
 构建脚本也可以引入其它基于Cargo的依赖包，依赖方式为在Cargo.toml中添加依赖包，示例如下：
+
 ```TOML
 # Cargo.toml
 
@@ -87,13 +91,17 @@ cc = "1.0.46"     # 可以在build.rs中使用cc相关的功能
 ![注释](.././assets/52.png)
 
 c目录中的pass.c为c代码，源码如下：
-```Rust
+
+```C
 // c/pass.c
 #include <stdio.h>
 
 void set_err(char *message) {   // 提供一个打印错误信息的函数
     printf("err: %s\n", message);
 }
+```
+
+```Rust
 src目录中为Rust代码，源码如下：
 // ==================
 // 封装c函数
@@ -114,7 +122,7 @@ fn main() {
 
 build.rs中的内容如下：
 
-```Rust
+```rust
 // build.rs
 fn main() {
     // 以下代码告诉 Cargo ，`c/pass.c`发生改变，就重新运行当前的构建脚本
@@ -144,5 +152,3 @@ libc = "0.2.139"  # src/main.rs中使用了libc这个库
 ```
 
 可以使用cargo run对这个工程编译运行。
-
-

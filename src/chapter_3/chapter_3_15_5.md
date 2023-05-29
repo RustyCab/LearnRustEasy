@@ -6,6 +6,7 @@ Rust 中的 LinkedList（链表）是一种线性数据结构，它由一系列�
 ## 1. 创建 LinkedList：
 
 要创建一个新的空 LinkedList，可以使用 `LinkedList::new()` 方法。需要导入 `std::collections::LinkedList` 模块以使用 LinkedList。
+
 ```rust
 use std::collections::LinkedList;
 
@@ -15,6 +16,7 @@ let mut list = LinkedList::new();
 ## 2. 添加元素：
 
 可以使用 `push_front()` 和 `push_back()` 方法将元素添加到链表的开头和结尾。
+
 ```rust
 list.push_front(1);
 list.push_back(2);
