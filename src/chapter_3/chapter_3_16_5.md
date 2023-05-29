@@ -8,7 +8,7 @@
 
 根据前面的知识，可能写出来的代码如下：
 
-```Rust
+```rust
 enum List {
     Cons(i32, Box<List>),
     Nil,
@@ -27,7 +27,7 @@ fn main() {
 
 Rc智能指针通过引用计数解决数据共享的问题，下面是Rc使用的简单代码：
 
-```Rust
+```rust
 use std::rc::Rc;
 fn main() {
     let a = Rc::new(5u32);
@@ -42,7 +42,8 @@ fn main() {
 ![注释](.././assets/27.png)
 
 前面共享列表的需求则可以使用Rc实现如下：
-```Rust
+
+```rust
 enum List {
     Cons(i32, Rc<List>),
     Nil,
@@ -66,7 +67,7 @@ fn main() {
 
 下面的示例打印了Rc的引用计数：
 
-```Rust
+```rust
 enum List {
     Cons(i32, Rc<List>),
     Nil,

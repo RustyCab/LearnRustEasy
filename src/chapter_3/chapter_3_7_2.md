@@ -2,7 +2,7 @@
 
 考虑如下代码：
 
-```Rust
+```rust
 fn main() {
     let s2 = String::from("hello");
     print(s2);
@@ -19,7 +19,7 @@ fn print(s: String) {
 
 如果要在调用`print`函数后仍然能使用s2，根据本书目前学过的Rust知识，则需要将所有权再从函数转移到变量，然后使用，代码如下：
 
-```Rust
+```rust
 fn main() {
     let s2 = String::from("hello");
     let s3 = print(s2);
@@ -38,7 +38,7 @@ fn print(s: String) -> String {
 
 引用本质上是一个指针，它存储一个地址，通过它可以访问存储在该地址上属于其它变量的数据。与指针不同的是，引用确保指向某个特性类型的有效值。对于一个变量的引用就是在此变量前面加上&符合。
 
-```Rust
+```rust
     let a = 5u32;
     let b = &a;    // b是对a的引用
 
@@ -51,7 +51,7 @@ fn print(s: String) -> String {
 ![注释](.././assets/10.png)
 
 **获取变量的引用，称之为借用** 。通过借用，允许使用被引用变量绑定的值，同时又没有移动该变量的所有权。前面的示例代码可以变成如下：
-```Rust
+```rust
 fn main() {
     let s2 = String::from("hello");
     let s3 = &s2;   //s3是对s2的借用，s3并不拥有String::from("hello")的所有权，s2的所有权没有改变
@@ -66,7 +66,7 @@ fn print(s: &String) {
 
 在一个范围对变量进行多个引用是可以的，如下：
 
-```Rust
+```rust
 fn main() {
     let s2 = String::from("hello");
     let s3 = &s2; //s3是对s2的借用，s3并不拥有String::from("hello")的所有权，s2的所有权没有改变
@@ -85,7 +85,7 @@ fn print(s: &String) {
 
 引用只能使用变量，并不允许改变变量的值，如果需要改变变量，需要使用可变引用(下节内容)，下面的代码会报错：
 
-```Rust
+```rust
 fn main() {
     let s = String::from("hello");
     change(&s);
@@ -103,7 +103,7 @@ fn change(some_string: &String) {
 ### 2.1 使用可变引用
 
 可以通过可变引用改变变量的值，对一个变量加上`&mut`就是对其的可变引用，示例如下：
-```Rust
+```rust
 fn main() {
     let mut s = String::from("hello");
     change(&mut s);
@@ -153,7 +153,7 @@ fn change(some_string: &mut String) {
 
 （1）限制一：**同一作用域，特定数据只能有一个可变引用**。如下代码会报错：
 
-```Rust
+```rust
 fn main() {
     let mut s1 = String::from("hello");
     let r1 = &mut s1; // 可变引用
@@ -164,7 +164,7 @@ fn main() {
 
 但是下面的代码可以的(新老编译器都可以)：
 
-```Rust
+```rust
 fn main() {
     let mut s = String::from("hello");
 
@@ -182,7 +182,7 @@ fn main() {
 
 下面的代码在新编译器中也是可以的：
 
-```Rust
+```rust
 fn main() {
     let mut s = String::from("hello");
 
@@ -198,7 +198,7 @@ fn main() {
 
 （2）限制二：**同一作用域，可变引用和不可变引用不能同时存在**。如下代码编译错误：
 
-```Rust
+```rust
 fn main() {
     let mut s = String::from("hello");
     let r1 = &s; // 没问题
@@ -211,7 +211,7 @@ fn main() {
 
 下面的代码在新编译器中是可以的：
 
-```Rust
+```rust
 fn main() {
     let mut s = String::from("hello");
 
@@ -277,7 +277,7 @@ int main()
 
 如下代码因为会产生悬垂引用，编译将不会通过：
 
-```Rust
+```rust
 fn main() {
     let reference_to_nothing = dangle();
 }

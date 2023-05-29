@@ -4,7 +4,7 @@
 
 常规引用是一个指针类型，包含了目标数据存储的内存地址。对常规引用使用 `*` ，可以通过解引用的方式获取到内存地址对应的数据值，示例如下：
 
-```Rust
+```rust
 fn main() {
     let x = 5;
     let y = &x;
@@ -18,7 +18,8 @@ fn main() {
 ## 2. 通过*使用智能指针背后的值
 
 对于智能指针，也可以通过`*`使用其背后的值，示例如下：
-```Rust
+
+```rust
 fn main() {
     let x = 5;
     let y = Box::new(x);
@@ -31,15 +32,15 @@ fn main() {
 
 实现`Deref trait`允许我们重载解引用运算符`*`。通过为类型实现`Deref trait`，类型可以被当做常规引用来对待。简单来说，如果类型A实现了`Deref trait`，那么就可以写如下代码：
 
-```Rust
-     let a: A = A::new();
-     let b =  &a;
-     let c = *b;   //对A实现了Deref trait，所以可以对A类型解引用
+```rust
+    let a: A = A::new();
+    let b =  &a;
+    let c = *b;   //对A实现了Deref trait，所以可以对A类型解引用
 ```
 
 下面的代码定义一个`MyBox`类型，并为其实现`Deref trait`：
 
-```Rust
+```rust
 use std::ops::Deref;
 struct MyBox<T>(T);
 impl<T> MyBox<T> {
@@ -67,7 +68,7 @@ fn main() {
 
 对于函数和方法的传参，Rust 提供了隐式转换：Deref 转换。若一个类型实现了 Deref 特征，那它的引用在传给函数或方法时，会根据参数签名来决定是否进行隐式的 Deref 转换，例如：
 
-```Rust
+```rust
 use std::ops::Deref;
 struct MyString(String);
 impl Deref for MyString { // MyString类型实现了Deref trait
@@ -95,7 +96,7 @@ fn main() {
 
 下面为调用方法时发生的隐式自动转换的例子：
 
-```Rust
+```rust
 use std::ops::Deref;
 struct MyType(u32);
 impl MyType {
@@ -125,7 +126,7 @@ fn main() {
 
 Deref还支持连续的隐式转换，示例如下：
 
-```Rust
+```rust
 fn print(s: &str) {
     println!("{}", s);
 }

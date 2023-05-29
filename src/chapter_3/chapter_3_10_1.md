@@ -22,6 +22,7 @@ pub trait GetInformation {
 ### 2.1 为类型实现trait
 
 代码示例如下：
+
 ```rust
 // 定义trait
 pub trait GetInformation {
@@ -33,6 +34,7 @@ pub struct Student {
     pub name: String,
     pub age: u32,
 }
+
 // 为Student类型实现GetInformation trait
 impl GetInformation for Student {
     fn get_name(&self) -> &String {
@@ -47,6 +49,7 @@ pub struct Teacher {
     pub name: String,
     pub age: u32,
 }
+
 // 为Teacher类型实现GetInformation trait
 impl GetInformation for Teacher {
     fn get_name(&self) -> &String {
@@ -77,6 +80,7 @@ fn main() {
 ### 2.2 可以在trait定义时提供默认实现
 
 可以在定义trait的时候提供默认的行为，trait的类型可以使用默认的行为，示例如下：
+
 ```rust
 // 定义trait
 pub trait GetInformation {
@@ -90,6 +94,7 @@ pub struct Student {
     pub name: String,
     pub age: u32,
 }
+
 // 为Student类型实现GetInformation trait
 impl GetInformation for Student {
     fn get_name(&self) -> &String {
@@ -105,6 +110,7 @@ pub struct Teacher {
     pub name: String,
     pub age: u32,
 }
+
 // 为Teacher类型实现GetInformation trait
 impl GetInformation for Teacher {
     fn get_name(&self) -> &String {
@@ -155,6 +161,7 @@ pub struct Student {
     pub name: String,
     pub age: u32,
 }
+
 // 为Student类型实现GetInformation trait
 impl GetInformation for Student {
     fn get_name(&self) -> &String {
@@ -169,6 +176,7 @@ pub struct Teacher {
     pub name: String,
     pub age: u32,
 }
+
 // 为Teacher类型实现GetInformation trait
 impl GetInformation for Teacher {
     fn get_name(&self) -> &String {
@@ -203,6 +211,7 @@ fn main() {
 
 
 上面中的print_information函数还可以写成如下：
+
 ```rust
 // 使用trait bound的写法一
 pub fn print_information<T: GetInformation>(item: T) {
@@ -212,6 +221,7 @@ pub fn print_information<T: GetInformation>(item: T) {
 ```
 
 这种写法叫做Trait bound语法，它是Rust中用于指定泛型类型参数所需的trait的一种方式，它还可以使用where关键字写成如下：
+
 ```rust
 // 使用trait bound的写法二
 pub fn print_information<T>(item: T)
@@ -230,6 +240,7 @@ where
 pub trait GetName {
     fn get_name(&self) -> &String;
 }
+
 pub trait GetAge {
     fn get_age(&self) -> u32;
 }
@@ -328,6 +339,7 @@ impl GetName for Student {
         &self.name
     }
 }
+
 struct Teacher {
     name: String,
 }
@@ -362,7 +374,7 @@ fn main() {
 错误原因分析（非常重要）：
 上面的代码中的`produce_item_with_name`函数的定义实际上等价于如下：
 
-```rust
+```Rust
 pub fn produce_item_with_name<T: GetName>(is_teacher: bool) -> T {
     ...
 
@@ -405,17 +417,19 @@ pub fn produce_item_with_name(is_teacher: bool) -> Student {
 通过使用带有 `trait bound `的泛型参数的`impl` 块，可以有条件地只为那些实现了特定 trait 的类型实现方法，示例如下：
 
 ```rust
-
 pub trait GetName {
     fn get_name(&self) -> &String;
 }
+
 pub trait GetAge {
     fn get_age(&self) -> u32;
 }
+
 struct PeopleMatchInformation<T, U> {
     master: T,
     employee: U,
 }
+
 // 11-15行也可以写成： impl<T: GetName + GetAge, U: GetName + GetAge> PeopleMatchInformation<T, U>
 impl<T, U> PeopleMatchInformation<T, U>
 where
@@ -429,35 +443,42 @@ where
         println!("student age = {}", self.employee.get_age());
     }
 }
+
 //使用
 pub struct Teacher {
     pub name: String,
     pub age: u32,
 }
+
 impl GetName for Teacher {
     fn get_name(&self) -> &String {
         &(self.name)
     }
 }
+
 impl GetAge for Teacher {
     fn get_age(&self) -> u32 {
         self.age
     }
 }
+
 pub struct Student {
     pub name: String,
     pub age: u32,
 }
+
 impl GetName for Student {
     fn get_name(&self) -> &String {
         &(self.name)
     }
 }
+
 impl GetAge for Student {
     fn get_age(&self) -> u32 {
         self.age
     }
 }
+
 fn main() {
     let t = Teacher {
         name: String::from("andy"),
@@ -486,24 +507,29 @@ fn main() {
 pub trait GetName {
     fn get_name(&self) -> &String;
 }
+
 pub trait PrintName {
     fn print_name(&self);
 }
+
 // 为实现了GetName trait的类型实现PrintName trait
 impl<T: GetName> PrintName for T {
     fn print_name(&self) {
         println!("name = {}", self.get_name());
     }
 }
+
 // 将为Student实现对应的trait
 pub struct Student {
     pub name: String,
 }
+
 impl GetName for Student {
     fn get_name(&self) -> &String {
         &(self.name)
     }
 }
+
 fn main() {
     let s = Student {
         name: String::from("Andy"),

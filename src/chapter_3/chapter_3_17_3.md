@@ -1,12 +1,14 @@
 # 3.17.3 再谈crate
 ## 1. 创建二进制crate和库crate
 可以被编译成可执行文件的crate就是二进制crate，它的代码中必定包含一个main函数。如下方式创建的就是一个二进制crate：
-```
+
+```bash
 cargo new main
 ```
 
 对于库crate的创建，需要加上--lib方式如下：
-```
+
+```bash
 cargo new my-lib --lib
 ```
 
@@ -17,12 +19,14 @@ cargo new my-lib --lib
 
 下面以使用第三方crate rand为例，来进行演示。
 ### （1）首先创建一个工程：
-```
+
+```bash
 cargo new main
 ```
 
 ### （2）添加依赖：
-```
+
+```bash
 cd main
 ```
 
@@ -33,13 +37,13 @@ cd main
 ### （3）在代码中使用rand库
 编写src/main.rs如下：
 
-```Rust
+```rust
 // src/main.rs
 use rand::prelude::*;   // 引入rand库
 
 fn main() {
     // 使用rand的函数
-    let mut rng = rand::thread_rng();   
+    let mut rng = rand::thread_rng();
     let y: f64 = rng.gen();
     println!("y = {:?}", y);
 }

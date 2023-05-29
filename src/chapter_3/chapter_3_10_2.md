@@ -7,7 +7,8 @@
 在Rust中，trait自身不能当作数据类型来使用，但trait 对象可以当作数据类型使用。因此，可以将实现了`Trait A`的类型`B`、`C`、`D`当作`trait A`的trait对象来使用。使用trait对象时，基本都是以引用的方式使用，所以使用时通常是引用符号加`dyn`关键字（即`&dyn`）。
 
 示例如下：
-```Rust
+
+```rust
 trait GetName {
     fn get_name(&self);
 }
@@ -77,7 +78,7 @@ fn main() {
 
 下面通过一段代码来分析一下使用trait对象时内存的布局。代码如下：
 
-```Rust
+```rust
   trait Vehicle {
     fn run(&self);
 }
@@ -135,7 +136,7 @@ fn main() {
 
 如下代码编译会报错，因为`Clone`返回的是`Self`：
 
-```Rust
+```rust
 pub struct Screen {
    pub components: Vec<Box<dyn Clone>>,
 }

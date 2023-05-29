@@ -13,7 +13,7 @@
 
 目录中的foo是Rust代码，用cargo new foo --lib创建，其中src/lib.rs的代码如下：
 
-```Rust
+```rust
 #![crate_type = "staticlib"] // 生成静态库
 #[no_mangle]  // 暴露给c的函数要声明#[no_mangle]
 pub extern fn foo(){
@@ -40,7 +40,7 @@ crate-type = ["staticlib"]  # 表示编译为静态库
 在foo目录下运行命令cargo build编译，在foo/target/debug/目录下会生成静态库libfoo.a。
 
 main.c中的c代码如下：
-```Rust
+```C
 #include <stdio.h>
 
 extern void foo();  // foo函数为Rust提供的函数
