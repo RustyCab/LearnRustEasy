@@ -246,7 +246,6 @@ fn main() {
 ```rust
 struct Closure<'a> {
     x: i32,
-    y: i32,
 }
 
 impl<'a> FnOnce<(i32,)> for Closure<'a> {
