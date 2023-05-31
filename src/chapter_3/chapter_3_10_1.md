@@ -382,11 +382,11 @@ pub fn produce_item_with_name<T: GetName>(is_teacher: bool) -> T {
 }
 ```
 
-返回的值相当于是一个泛型，这个泛型要求要实现`GetName`这个trait。回顾泛型的知识，Rust实际上是在编译的时候把泛型换成了具体的类型，所以上面的定义中，T在编译时会变成确定的某个类型。所以在编译时，上面的代码可能被翻译成如下两种情况：
+返回的值相当于是一个泛型，这个泛型要求要实现`GetName`这个trait。回顾泛型的知识，Rust实际上是在编译的时候把泛型换成了具体的类型，所以上面的定义中，T在编译时会变成确定的某个类型(按照上下文，即Student类型或Teacher类型)。所以在编译时，上面的代码可能被翻译成如下两种情况：
 
 ```rust
 // 编译时代码将被翻译成如下：
-pub fn produce_item_with_name(is_teacher: bool) -> Student {
+pub fn produce_item_with_name(is_teacher: bool) -> Teacher {
     let result = if is_teacher {
         Teacher { name: "alice".to_string() }
     } else {
@@ -410,7 +410,7 @@ pub fn produce_item_with_name(is_teacher: bool) -> Student {
 
 无论是哪种情况，都是错误的。
 
-那如果需要返回多种实现了trait的类型，则需要使用后续讲解的内容trait对象（3.9.2节）来满足需求。
+那如果需要返回多种实现了trait的类型，则需要使用后续讲解的内容trait对象（3.10.2节）来满足需求。
 
 ## 5. 使用`trait bound`有条件的实现方法
 
