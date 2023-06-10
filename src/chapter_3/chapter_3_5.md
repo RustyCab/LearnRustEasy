@@ -73,7 +73,7 @@ Rust中的控制流结构主要包括：
 
     ```rust
     fn main() {
-        // 一直循环打印 again
+        // 一直循环打印 again!
         loop {
             println!("again!");
         }
@@ -91,12 +91,14 @@ Rust中的控制流结构主要包括：
             counter += 1;
 
             if counter == 10 {
-                break;  // 将终止循环
+                break; // 将终止循环
             }
         }
     }
     ```
+
     上面的代码将打印10次，遇到`break`后终止循环。另外，`break`也可以返回值，如下：
+
     ```rust
     fn main() {
         let mut counter = 0;
@@ -125,7 +127,7 @@ Rust中的控制流结构主要包括：
                 break;
             }
             if x % 2 == 0 {
-                continue;      //将直接跳到下一轮循环
+                continue; // 将直接跳到下一轮循环
             }
             println!("{}", x);
         }
@@ -134,7 +136,7 @@ Rust中的控制流结构主要包括：
 
 ## 3.5.3. while条件循环
 
-- `while`条件循环执行代码，当条件不满足后结束循环，如下：
+- `while`条件循环执行代码，当条件不满足时结束循环，如下：
 
     ```rust
     fn main() {
