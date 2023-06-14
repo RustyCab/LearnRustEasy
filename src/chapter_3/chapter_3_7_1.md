@@ -91,7 +91,7 @@ fn main() {
 }
 ```
 
-### 3.2 String类型的本质
+### 2）String类型的本质
 
 Rust标准库中，String类型的定义如下：
 
